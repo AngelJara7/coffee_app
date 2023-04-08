@@ -19,8 +19,8 @@ class CoffeeListPage extends StatelessWidget {
 
         title: HeaderPage(
           titlePage: 'Coffee Selection',
-          textLogo: 'NEURO',
-          textpage: 'COFFEE HEOUSE', 
+          textLogo: 'NEURO ',
+          textpage: 'COFFEE HOUSE ', 
           icon: Icons.coffee_sharp,
         ),
         backgroundColor: Colors.white,

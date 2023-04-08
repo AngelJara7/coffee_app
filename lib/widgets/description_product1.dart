@@ -44,10 +44,12 @@ class DescriptionProduct1 extends StatelessWidget {
       decoration: value == 1
       ? boxDecoration1
       : boxDecoration2,
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          
           Text(productName, style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w500), selectionColor: const Color.fromRGBO(45, 45, 45, 0),),
           const SizedBox(height: 10,),
           Text(productDescription, selectionColor: const Color.fromRGBO(45, 45, 45, 0), overflow: TextOverflow.visible, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400),)
