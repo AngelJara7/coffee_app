@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../widgets/widgets.dart';
 
-class CoffeeListPage extends StatelessWidget {
+class ProductsListPage extends StatelessWidget {
    
-  const CoffeeListPage({Key? key}) : super(key: key);
+  const ProductsListPage({Key? key}) : super(key: key);
   
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CoffeeListPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.menu, color: Colors.black, size: 28,), 
+          icon: const Icon(Icons.menu_rounded, color: Colors.black, size: 28,), 
           onPressed: () {},
         ),
 
@@ -41,55 +41,85 @@ class CoffeeListPage extends StatelessWidget {
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  _Product(
-                    image: 'assets/coffee_latte.jpg',
-                    productName: 'Café Latte',
-                    productDescription: 'Ullamco id incididunt ut et cupidatat laboris officia consequat.',
-                    value: 1,
-                    price: 6.79,
+                children: [
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'product_details_page');
+                    },
+                    child: const _Product(
+                      image: 'assets/coffee_latte.jpg',
+                      productName: 'Café Latte',
+                      productDescription: 'Ullamco id incididunt ut et cupidatat laboris officia consequat.',
+                      value: 1,
+                      price: 6.79,
+                    ),
                   ),
-                  SizedBox(height: 25,),
-                  _Product(
-                    image: 'assets/frappuccino.jpg',
-                    productName: 'Frappuccino',
-                    productDescription: 'Laborum laboris culpa officia elit consequat labore irure aute nulla.',
-                    value: 2,
-                    price: 6.99,
+                  const SizedBox(height: 25,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'product_details_page');
+                    },
+                    child: const _Product(
+                      image: 'assets/frappuccino.jpg',
+                      productName: 'Frappuccino',
+                      productDescription: 'Laborum laboris culpa officia elit consequat labore irure aute nulla.',
+                      value: 2,
+                      price: 6.99,
+                    ),
                   ),
-                  SizedBox(height: 25,),
-                  _Product(
-                    image: 'assets/cappuccino.jpg',
-                    productName: 'Cappuccino',
-                    productDescription: 'Aute deserunt dolor anim ad cupidatat consectetur sit.',
-                    value: 1,
-                    price: 5.49,
+                  const SizedBox(height: 25,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'product_details_page');
+                    },
+                    child: const _Product(
+                      image: 'assets/cappuccino.jpg',
+                      productName: 'Cappuccino',
+                      productDescription: 'Aute deserunt dolor anim ad cupidatat consectetur sit.',
+                      value: 1,
+                      price: 5.49,
+                    ),
                   ),
-                  SizedBox(height: 25,),
-                  _Product(
-                    image: 'assets/expreso.jpg',
-                    productName: 'Expreso',
-                    productDescription: 'Do ullamco amet cupidatat tempor quis laboris et deserunt.',
-                    value: 2,
-                    price: 6.79,
+                  const SizedBox(height: 25,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'product_details_page');
+                    },
+                    child: const _Product(
+                      image: 'assets/expreso.jpg',
+                      productName: 'Expreso',
+                      productDescription: 'Do ullamco amet cupidatat tempor quis laboris et deserunt.',
+                      value: 2,
+                      price: 6.79,
+                    ),
                   ),
-                  SizedBox(height: 25,),
-                  _Product(
-                    image: 'assets/americano.jpg',
-                    productName: 'Americano',
-                    productDescription: 'Non voluptate nisi officia in quis non laboris aute pariatur ad.',
-                    value: 1,
-                    price: 5.79,
+                  const SizedBox(height: 25,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'product_details_page');
+                    },
+                    child: const _Product(
+                      image: 'assets/americano.jpg',
+                      productName: 'Americano',
+                      productDescription: 'Non voluptate nisi officia in quis non laboris aute pariatur ad.',
+                      value: 1,
+                      price: 5.79,
+                    ),
                   ),
-                  SizedBox(height: 25,),
-                  _Product(
-                    image: 'assets/cafe_con_leche.jpg',
-                    productName: 'Café con leche',
-                    productDescription: 'Proident velit minim ex occaecat.',
-                    value: 2,
-                    price: 4.59,
+                  const SizedBox(height: 25,),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, 'product_details_page');
+                    },
+                    child: const _Product(
+                      image: 'assets/cafe_con_leche.jpg',
+                      productName: 'Café con leche',
+                      productDescription: 'Proident velit minim ex occaecat.',
+                      value: 2,
+                      price: 4.59,
+                    ),
                   ),
-                  SizedBox(height: 100,),
+                  const SizedBox(height: 100,),
                 ],
               ),
             ],
@@ -165,11 +195,7 @@ class _Product extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final height =  MediaQuery.of(context).size.height;
-    
-    const boxDecoration = BoxDecoration(
-            color: Color.fromRGBO(45, 45, 45, 1),
-            borderRadius: BorderRadius.all(Radius.circular(50))
-          );
+    final Widget widget = Text('\$$price', style: GoogleFonts.lora(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.white),);
 
     return Stack(
       alignment: value == 1 ? Alignment.bottomRight : Alignment.bottomLeft,
@@ -198,13 +224,7 @@ class _Product extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          alignment: Alignment.center,
-          height: 50,
-          width: 50,
-          decoration: boxDecoration,
-          child: Text('\$$price', style: GoogleFonts.lora(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.white),),
-        ),
+        PriceProduct(diameter: 0.13, widget: widget,),
       ]
     );
   }
