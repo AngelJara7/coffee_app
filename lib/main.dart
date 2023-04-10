@@ -1,7 +1,16 @@
 import 'package:coffee_app/pages/pages.dart';
+import 'package:coffee_app/providers/product_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => ProductProvider(), lazy: false,)
+    ],
+    child: const MyApp(),
+  )
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,7 +27,4 @@ class MyApp extends StatelessWidget {
       },
     );
   }
-}
-
-class FlutterStatusbarcolor {
 }

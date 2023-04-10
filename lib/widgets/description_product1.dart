@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DescriptionProduct1 extends StatelessWidget {
+  
   final String productName;
   final String productDescription;
   final int value;
@@ -51,8 +52,10 @@ class DescriptionProduct1 extends StatelessWidget {
         children: [
           
           Text(productName, style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w500), selectionColor: const Color.fromRGBO(45, 45, 45, 0),),
+
           const SizedBox(height: 10,),
-          Text(productDescription, selectionColor: const Color.fromRGBO(45, 45, 45, 0), overflow: TextOverflow.visible, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400),)
+          
+          Text(productDescription, selectionColor: const Color.fromRGBO(45, 45, 45, 0), style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400),)
         ],
       )
     );

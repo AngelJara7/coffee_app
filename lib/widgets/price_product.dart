@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PriceProduct extends StatelessWidget {
+  
   const PriceProduct({super.key, required this.diameter, required this.widget,});
 
   final double diameter;

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../providers/product_provider.dart';
 import '../widgets/widgets.dart';
 
 class ProductsListPage extends StatelessWidget {
@@ -8,6 +10,8 @@ class ProductsListPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+
+    final productProvider = Provider.of<ProductProvider>(context).products;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -35,94 +39,34 @@ class ProductsListPage extends StatelessWidget {
       ),
       body: Stack(
         alignment: Alignment.bottomCenter,
+        
         children: [
-          ListView(
-            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+          ListView.builder(
+            scrollDirection: Axis.vertical,
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 80),
+            itemCount: productProvider.length,
+            itemBuilder: (context, index) {
+              final product = productProvider[index];
+
+              return Column(
                 children: [
+
                   GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'product_details_page');
+                    onTap: () {
+                      Navigator.pushNamed(context, 'product_details_page', arguments: product);
                     },
-                    child: const _Product(
-                      image: 'assets/coffee_latte.jpg',
-                      productName: 'Café Latte',
-                      productDescription: 'Ullamco id incididunt ut et cupidatat laboris officia consequat.',
-                      value: 1,
-                      price: 6.79,
+                    child: _Product(
+                      image: product.img,
+                      productName: product.name,
+                      productDescription: product.description,
+                      value: product.value,
+                      price: product.price
                     ),
                   ),
-                  const SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'product_details_page');
-                    },
-                    child: const _Product(
-                      image: 'assets/frappuccino.jpg',
-                      productName: 'Frappuccino',
-                      productDescription: 'Laborum laboris culpa officia elit consequat labore irure aute nulla.',
-                      value: 2,
-                      price: 6.99,
-                    ),
-                  ),
-                  const SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'product_details_page');
-                    },
-                    child: const _Product(
-                      image: 'assets/cappuccino.jpg',
-                      productName: 'Cappuccino',
-                      productDescription: 'Aute deserunt dolor anim ad cupidatat consectetur sit.',
-                      value: 1,
-                      price: 5.49,
-                    ),
-                  ),
-                  const SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'product_details_page');
-                    },
-                    child: const _Product(
-                      image: 'assets/expreso.jpg',
-                      productName: 'Expreso',
-                      productDescription: 'Do ullamco amet cupidatat tempor quis laboris et deserunt.',
-                      value: 2,
-                      price: 6.79,
-                    ),
-                  ),
-                  const SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'product_details_page');
-                    },
-                    child: const _Product(
-                      image: 'assets/americano.jpg',
-                      productName: 'Americano',
-                      productDescription: 'Non voluptate nisi officia in quis non laboris aute pariatur ad.',
-                      value: 1,
-                      price: 5.79,
-                    ),
-                  ),
-                  const SizedBox(height: 25,),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.pushNamed(context, 'product_details_page');
-                    },
-                    child: const _Product(
-                      image: 'assets/cafe_con_leche.jpg',
-                      productName: 'Café con leche',
-                      productDescription: 'Proident velit minim ex occaecat.',
-                      value: 2,
-                      price: 4.59,
-                    ),
-                  ),
-                  const SizedBox(height: 100,),
+                  const SizedBox(height: 20,)
                 ],
-              ),
-            ],
+              );
+            },
           ),
           const _BottomSearchBar()
         ],
@@ -143,7 +87,7 @@ class _BottomSearchBar extends StatelessWidget {
           end: Alignment.bottomCenter,
           colors: [
             Color.fromRGBO(255, 255, 255, 0),
-            Color.fromRGBO(128, 128, 128, 0.4),
+            Color.fromRGBO(128, 128, 128, 0.5),
             Color.fromRGBO(128, 128, 128, 1)
           ]
         )

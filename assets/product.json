@@ -1,0 +1,53 @@
+{
+    "product": 
+    [
+        {
+            "id": "1",
+            "name": "Café Latte",
+            "img": "assets/img/coffee_latte.jpg",
+            "description": "Ullamco id incididunt ut et cupidatat laboris officia consequat.",
+            "value": 1,
+            "price": 6.79
+        },
+        {
+            "id": "2",
+            "name": "Frappuccino",
+            "img": "assets/img/frappuccino.jpg",
+            "description": "Laborum laboris culpa officia elit consequat labore irure aute nulla.",
+            "value": 2,
+            "price": 6.99
+        },
+        {
+            "id": "3",
+            "name": "Cappuccino",
+            "img": "assets/img/cappuccino.jpg",
+            "description": "Aute deserunt dolor anim ad cupidatat consectetur sit.",
+            "value": 1,
+            "price": 5.49
+        },
+        {
+            "id": "4",
+            "name": "Expreso",
+            "img": "assets/img/expreso.jpg",
+            "description": "Do ullamco amet cupidatat tempor quis laboris et deserunt.",
+            "value": 2,
+            "price": 6.79
+        },
+        {
+            "id": "5",
+            "name": "Americano",
+            "img": "assets/img/americano.jpg",
+            "description": "Non voluptate nisi officia in quis non laboris aute pariatur ad.",
+            "value": 1,
+            "price": 5.79
+        },
+        {
+            "id": "6",
+            "name": "Café con leche",
+            "img": "assets/img/coffee_latte.jpg",
+            "description": "Proident velit minim ex occaecat.",
+            "value": 2,
+            "price": 4.59
+        }
+    ]
+}

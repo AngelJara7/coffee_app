@@ -2,6 +2,8 @@ import 'package:coffee_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../models/product.dart';
+
 class ProductDetailsPage extends StatelessWidget {
    
   const ProductDetailsPage({Key? key}) : super(key: key);
@@ -9,13 +11,15 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var text = Text('\$${5.79}', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),);
+    final Product product = ModalRoute.of(context)!.settings.arguments as Product;
+
+    var text = Text('\$${product.price}', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),);
                 
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
         children: [
-          _ProductImageDetails(context, text),
+          _ProductImageDetails(context, text, product.img),
 
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -23,7 +27,7 @@ class ProductDetailsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                Text('Café Latte', style: GoogleFonts.lora(fontSize: 24, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1))),
+                Text(product.name, style: GoogleFonts.lora(fontSize: 24, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1))),
 
                 const SizedBox(height: 5,),
                 
@@ -51,7 +55,7 @@ class ProductDetailsPage extends StatelessWidget {
     );
   }
 
-  Stack _ProductImageDetails(BuildContext context, Text text) {
+  Stack _ProductImageDetails(BuildContext context, Widget text, String image) {
     
     return Stack(
       children: [
@@ -61,7 +65,7 @@ class ProductDetailsPage extends StatelessWidget {
           
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(25)),
-            child: Image.asset("assets/expreso.jpg", fit: BoxFit.fitWidth, alignment: Alignment.center, width: double.infinity,),
+            child: Image.asset(image, fit: BoxFit.fill, alignment: Alignment.center, width: double.infinity,),
           ),
         ),
 
