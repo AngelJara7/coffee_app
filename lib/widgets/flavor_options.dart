@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class OptionsProductSelect extends StatelessWidget {
+class FlavorOptions extends StatelessWidget {
 
-  const OptionsProductSelect({super.key, required this.text,});
+  const FlavorOptions({super.key, required this.text,});
 
   final String text;
   @override

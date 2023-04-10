@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PriceProduct extends StatelessWidget {
   
-  const PriceProduct({super.key, required this.diameter, required this.widget,});
+  const PriceProduct({super.key, required this.diameter, required this.price, required this.size,});
 
   final double diameter;
-  final Widget widget;
+  final double price;
+  final double size;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class PriceProduct extends StatelessWidget {
       height: diamterCircle,
       width: diamterCircle,
       decoration: boxDecoration,
-      child: widget
+      child: Text('\$$price', style: GoogleFonts.lora(fontSize: size, color: Colors.white),)
     );
   }
 }

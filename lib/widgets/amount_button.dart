@@ -21,14 +21,14 @@ class AmountButton extends StatelessWidget {
         children: [
           IconButton(
             onPressed: (){},
-            icon: const Icon(Icons.remove, color: Colors.white,)
+            icon: const Icon(Icons.remove, color: Colors.white, size: 20,)
           ),
 
           Text('1', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w600, color: Colors.white),),
 
           IconButton(
             onPressed: (){},
-            icon: const Icon(Icons.add, color: Colors.white,)
+            icon: const Icon(Icons.add, color: Colors.white, size: 20,)
           )
         ],
       ),

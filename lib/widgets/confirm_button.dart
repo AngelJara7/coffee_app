@@ -18,7 +18,7 @@ class ConfirmButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         color: const Color.fromRGBO(45, 45, 45, 1),
       ),
-      child: Text(text, style: GoogleFonts.poppins(fontSize: 16, color: Colors.white),),
+      child: Text(text, style: GoogleFonts.poppins(fontSize: 16, color: Colors.white,), textAlign: TextAlign.center,),
     );
   }
 }
