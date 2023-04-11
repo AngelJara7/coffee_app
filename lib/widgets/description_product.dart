@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../models/product.dart';
+import '../models/products.dart';
 
 class DescriptionProduct extends StatelessWidget {
 
   const DescriptionProduct({super.key, required this.product,});
 
-  final Product product;
+  final Products product;
 
   @override
   Widget build(BuildContext context) {

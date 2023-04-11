@@ -1,4 +1,4 @@
-import 'package:coffee_app/models/product.dart';
+import 'package:coffee_app/models/products.dart';
 import 'package:coffee_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +6,7 @@ class CardProduct extends StatelessWidget {
   
   const CardProduct({super.key, required this.product});
 
-  final Product product;
+  final Products product;
 
   @override
   Widget build(BuildContext context) {

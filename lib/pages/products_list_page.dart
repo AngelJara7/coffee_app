@@ -20,12 +20,16 @@ class ProductsListPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
 
-        leading: IconButton(
-          icon: const Icon(Icons.menu_rounded, color: Colors.black, size: 28,), 
-          onPressed: () {},
+        iconTheme: const IconThemeData(
+          color: Color.fromRGBO(45, 45, 45, 1)
         ),
 
-        title: HeaderPage(titlePage: 'Coffee Selection', textLogo: 'NEURO ', textpage: 'COFFEE HOUSE ', icon: Icons.coffee_sharp,),
+        // leading: IconButton(
+        //   icon: const Icon(Icons.menu_rounded, color: Colors.black, size: 28,), 
+        //   onPressed: () {},
+        // ),
+
+        title: const HeaderPage(titlePage: 'Coffee Selection', textLogo: 'NEURO ', textpage: 'COFFEE HOUSE ', icon: Icons.coffee_sharp, color: Color.fromRGBO(45, 45, 45, 1), fontSizeTitle: 20, fontSize: 10,),
 
         actions: [
           IconButton(
@@ -34,6 +38,8 @@ class ProductsListPage extends StatelessWidget {
           ),
         ],
       ),
+
+      drawer: const SideMenu(),
       
       body: Stack(
         alignment: Alignment.bottomCenter,

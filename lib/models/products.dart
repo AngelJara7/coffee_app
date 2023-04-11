@@ -9,14 +9,14 @@ class NewsResponse {
         required this.product,
     });
 
-    List<Product> product;
+    List<Products> product;
 
     factory NewsResponse.fromRawJson(String str) => NewsResponse.fromJson(json.decode(str));
 
     // String toRawJson() => json.encode(toJson());
 
     factory NewsResponse.fromJson(Map<String, dynamic> json) => NewsResponse(
-        product: List<Product>.from(json["product"].map((x) => Product.fromJson(x))),
+        product: List<Products>.from(json["products"].map((x) => Products.fromJson(x))),
     );
 
     // Map<String, dynamic> toJson() => {
@@ -24,8 +24,8 @@ class NewsResponse {
     // };
 }
 
-class Product {
-    Product({
+class Products {
+    Products({
         required this.id,
         required this.name,
         required this.img,
@@ -41,11 +41,11 @@ class Product {
     int value;
     double price;
 
-    factory Product.fromRawJson(String str) => Product.fromJson(json.decode(str));
+    factory Products.fromRawJson(String str) => Products.fromJson(json.decode(str));
 
     // String toRawJson() => json.encode(toJson());
 
-    factory Product.fromJson(Map<String, dynamic> json) => Product(
+    factory Products.fromJson(Map<String, dynamic> json) => Products(
         id: json["id"],
         name: json["name"],
         img: json["img"],

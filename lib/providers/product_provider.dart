@@ -1,11 +1,11 @@
-import 'package:coffee_app/models/product.dart';
+import 'package:coffee_app/models/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ProductProvider extends ChangeNotifier{
 
-  List<Product> products = [];
-  final String routeFile = 'assets/product.json';
+  List<Products> products = [];
+  final String routeFile = 'assets/products.json';
 
   ProductProvider() {
     getAllProduct();

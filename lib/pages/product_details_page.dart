@@ -1,7 +1,7 @@
 import 'package:coffee_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/product.dart';
+import '../models/products.dart';
 
 class ProductDetailsPage extends StatelessWidget {
    
@@ -10,7 +10,7 @@ class ProductDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final Product product = ModalRoute.of(context)!.settings.arguments as Product;
+    final Products product = ModalRoute.of(context)!.settings.arguments as Products;
        
     return Scaffold(
       backgroundColor: Colors.white,
