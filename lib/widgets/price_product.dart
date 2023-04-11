@@ -17,14 +17,14 @@ class PriceProduct extends StatelessWidget {
       borderRadius: BorderRadius.all(Radius.circular(50))
     );
     
-    final double diamterCircle = MediaQuery.of(context).size.width * diameter;
+    final double diameterCircle = MediaQuery.of(context).size.width * diameter;
 
     return Container(
       alignment: Alignment.center,
-      height: diamterCircle,
-      width: diamterCircle,
+      height: diameterCircle,
+      width: diameterCircle,
       decoration: boxDecoration,
-      child: Text('\$$price', style: GoogleFonts.lora(fontSize: size, color: Colors.white),)
+      child: Text('\$ $price', style: GoogleFonts.lora(fontSize: size, color: Colors.white),)
     );
   }
 }

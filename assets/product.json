@@ -44,7 +44,7 @@
         {
             "id": "6",
             "name": "Café con leche",
-            "img": "assets/img/coffee_latte.jpg",
+            "img": "assets/img/cafe_con_leche.jpg",
             "description": "Proident velit minim ex occaecat.",
             "value": 2,
             "price": 4.59
