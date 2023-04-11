@@ -3,27 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/product.dart';
 
-class ProductDetailsPage extends StatefulWidget {
+class ProductDetailsPage extends StatelessWidget {
    
   const ProductDetailsPage({Key? key}) : super(key: key);
-
-  @override
-  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
-}
-
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
-
-  int counter = 1;
-
-  void increase() {
-    counter++;
-  }
-
-  void decrease() {
-    if (counter > 1) {
-      counter--;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +34,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
                 const SizedBox(height: 15,),
 
-                _AmountButton(counter: counter, price: product.price),
+                const AmountButton(height: 35, width: 140, fontSize: 20,),
 
                 const SizedBox(height: 15,),
 
@@ -129,67 +111,6 @@ class _ProductScore extends StatelessWidget {
         const Icon(Icons.star, size: 15, color: Colors.amber,),
         const Icon(Icons.star, size: 15, color: Colors.amber,),
       ]
-    );
-  }
-}
-
-class _AmountButton extends StatefulWidget {
-
-  _AmountButton({required this.counter, required this.price});
-
-  int counter;
-  double price;
-
-  @override
-  State<_AmountButton> createState() => _AmountButtonState();
-}
-
-class _AmountButtonState extends State<_AmountButton> {
-  int count = 1;
-
-  void increase() {
-    count++;
-    setState(() {});
-  }
-
-  void decrease() {
-    if (count > 1) {
-      count--;
-    }
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Container(
-      height: 35,
-      width: 140,
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(45, 45, 45, 1),
-        borderRadius: BorderRadius.circular(100),
-      ),
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: () {
-              decrease();
-            },
-            icon: const Icon(Icons.remove, color: Colors.white, size: 20,)
-          ),
-
-          Text('$count', style: GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),),
-
-          IconButton(
-            onPressed: () {
-              increase();
-            },
-            icon: const Icon(Icons.add, color: Colors.white, size: 20,)
-          )
-        ],
-      ),
     );
   }
 }
