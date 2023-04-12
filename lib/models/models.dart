@@ -1,0 +1,1 @@
+export 'package:coffee_app/models/products.dart';

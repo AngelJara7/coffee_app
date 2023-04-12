@@ -1,12 +1,14 @@
-import 'package:coffee_app/pages/pages.dart';
-import 'package:coffee_app/providers/product_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:coffee_app/pages/pages.dart';
+import 'package:coffee_app/providers/providers.dart';
 
 void main() => runApp(
   MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => ProductProvider(), lazy: false,)
+      ChangeNotifierProvider(create: (_) => ProductProvider(), lazy: false,),
+      ChangeNotifierProvider(create: (_) => CalculateTotalPrice(), lazy: false,)
     ],
     child: const MyApp(),
   )

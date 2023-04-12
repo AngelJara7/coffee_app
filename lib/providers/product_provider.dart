@@ -1,6 +1,6 @@
-import 'package:coffee_app/models/products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../models/models.dart';
 
 class ProductProvider extends ChangeNotifier{
 

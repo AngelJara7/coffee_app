@@ -24,7 +24,7 @@ class HeaderPage extends StatelessWidget {
           children: [
             Text(textLogo, style: GoogleFonts.lora(fontWeight: FontWeight.w500, fontSize: 11, color: color),),
             Text(textpage, style: GoogleFonts.lora(fontWeight: FontWeight.normal, fontSize: fontSize, color: color)),
-            Icon(icon, size: 10, color: color,)
+            Icon(icon, size: fontSize, color: color,)
           ],
         )
       ],

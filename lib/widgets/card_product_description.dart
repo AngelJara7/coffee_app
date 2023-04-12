@@ -3,9 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../models/products.dart';
 
-class DescriptionProduct extends StatelessWidget {
+class CardProductDescription extends StatelessWidget {
 
-  const DescriptionProduct({super.key, required this.product,});
+  const CardProductDescription({super.key, required this.product,});
 
   final Products product;
 

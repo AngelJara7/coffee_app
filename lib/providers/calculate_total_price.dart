@@ -2,34 +2,29 @@ import 'package:flutter/material.dart';
 
 class CalculateTotalPrice extends ChangeNotifier{
 
-  int counter = 1;
-  double price;
+  double _price = 0;
+  late int _counter = 1;
+  
+  double get price => _price;
+  int get counter => _counter;
 
-  CalculateTotalPrice(this.price) {
-    increase();
-    decrease();
+  void setPrice(double price) {
+    _price = price;
   }
 
-  void setPrice(double price_) {
-    updatePrice(price_, counter);
-    notifyListeners();
+  void setCounter(int counter) {
+    _counter = counter;
   }
 
   void increase() {
-    counter++;
-    updatePrice(price, counter);
+    _counter++;
     notifyListeners();
   }
 
   void decrease() {
-    if (counter > 1) {
-      counter--;
+    if (_counter > 1) {
+      _counter--;
     }
-    updatePrice(price, counter);
     notifyListeners();
-  }
-
-  double updatePrice(double price, int counter) {
-    return price * counter;
   }
 }

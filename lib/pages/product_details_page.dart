@@ -1,7 +1,10 @@
-import 'package:coffee_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/products.dart';
+import 'package:provider/provider.dart';
+
+import '../models/models.dart';
+import '../providers/providers.dart';
+import 'package:coffee_app/widgets/widgets.dart';
 
 class ProductDetailsPage extends StatelessWidget {
    
@@ -19,41 +22,53 @@ class ProductDetailsPage extends StatelessWidget {
         children: [
           _ProductImageDetails(price: product.price, image: product.img),
 
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
-                Text(product.name, style: GoogleFonts.lora(fontSize: 24, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1))),
-
-                const SizedBox(height: 5,),
-                
-                const _ProductScore(),
-
-                const SizedBox(height: 15,),
-
-                const AmountButton(height: 35, width: 140, fontSize: 20,),
-
-                const SizedBox(height: 15,),
-
-                const _OptionsFlavors(text: 'Add flavor', flavors: ['Vanilla', 'Caramel', 'Coconut'],),
-
-                const SizedBox(height: 15,),
-
-                const _OptionsFlavors(text: 'Pick Milk', flavors: ['Almond Milk', 'Soy Milk', 'Oat Milk'],),
-                
-                const SizedBox(height: 20,),
-                
-                const ConfirmButton(text: 'Add to Cart', height: 50,)
-              ],
-            ),
-          ),
+          _DetailsProduct(product: product),
         ],
       ),
     );
 
+  }
+}
+
+class _DetailsProduct extends StatelessWidget {
+
+  const _DetailsProduct({required this.product,});
+
+  final Products product;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          Text(product.name, style: GoogleFonts.lora(fontSize: 24, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1))),
+
+          const SizedBox(height: 5,),
+          
+          const _ProductScore(),
+
+          const SizedBox(height: 15,),
+
+          const AmountButton(height: 35, width: 140, fontSize: 20,),
+
+          const SizedBox(height: 15,),
+
+          const FlavorOptions(text: 'Add flavor', flavors: ['Vanilla', 'Caramel', 'Coconut'],),
+
+          const SizedBox(height: 15,),
+
+          const FlavorOptions(text: 'Pick Milk', flavors: ['Almond Milk', 'Soy Milk', 'Oat Milk'],),
+          
+          const SizedBox(height: 20,),
+          
+          const ConfirmButton(text: 'Add to Cart', height: 50,)
+        ],
+      ),
+    );
   }
 }
 
@@ -79,19 +94,48 @@ class _ProductImageDetails extends StatelessWidget {
         ),
 
         Positioned(
-          bottom: 0,
-          right: 10,
-          child: PriceProduct(diameter: 0.22, price: price, size: 20)
-        ),
-
-        Positioned(
           top: 25,
           left: 10,
           child: _Container(),
-        )
+        ),
+
+        Positioned(
+          bottom: 0,
+          right: 10,
+          child: _PriceProduct(price: price,)
+        ),
       ],
     );
   }
+}
+
+class _PriceProduct extends StatelessWidget {
+  
+  const _PriceProduct({required this.price,});
+
+  final double price;
+
+  @override
+  Widget build(BuildContext context) {
+
+    final calculatePrice = Provider.of<CalculateTotalPrice>(context);
+    calculatePrice.setPrice(price);
+    String finalPrice = (price * calculatePrice.counter).toStringAsFixed(2);
+
+    return Container(
+      alignment: Alignment.center,
+      height: MediaQuery.of(context).size.width * 0.22,
+      width: MediaQuery.of(context).size.width * 0.22,
+      decoration: _boxDecoration(),
+
+      child: Text('\$ $finalPrice', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),)
+    );
+  }
+
+  BoxDecoration _boxDecoration() => const BoxDecoration(
+    color: Color.fromRGBO(45, 45, 45, 1),
+    borderRadius: BorderRadius.all(Radius.circular(50))
+  );
 }
 
 class _ProductScore extends StatelessWidget {
@@ -100,44 +144,19 @@ class _ProductScore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text('Filled with cream', style: GoogleFonts.lora(fontSize: 16, fontWeight: FontWeight.w500, color: const Color.fromRGBO(45, 45, 45, 1)),),
+
         const SizedBox(width: 10,),
-        const Icon(Icons.star, size: 15, color: Colors.amber,),
-        const Icon(Icons.star, size: 15, color: Colors.amber,),
-        const Icon(Icons.star, size: 15, color: Colors.amber,),
-        const Icon(Icons.star, size: 15, color: Colors.amber,),
-        const Icon(Icons.star, size: 15, color: Colors.amber,),
+        const Icon(Icons.star_rounded, size: 15, color: Colors.amber,),
+        const Icon(Icons.star_rounded, size: 15, color: Colors.amber,),
+        const Icon(Icons.star_rounded, size: 15, color: Colors.amber,),
+        const Icon(Icons.star_rounded, size: 15, color: Colors.amber,),
+        const Icon(Icons.star_rounded, size: 15, color: Colors.amber,),
       ]
-    );
-  }
-}
-
-class _OptionsFlavors extends StatelessWidget {
-
-  const _OptionsFlavors({required this.text, required this.flavors});
-
-  final String text;
-  final List<String> flavors;
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(text, style: GoogleFonts.lora(fontSize: 16, fontWeight: FontWeight.w600),),
-        const SizedBox(height: 5,),
-        
-        Wrap(
-          runSpacing: 7,
-          children: [
-            for(var flavor in flavors) FlavorOptions(text: flavor)
-          ],
-        ),
-      ],
     );
   }
 }
@@ -146,19 +165,25 @@ class _Container extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final calculatePrice = Provider.of<CalculateTotalPrice>(context);
+
     return Container(
       alignment: Alignment.center,
       height: MediaQuery.of(context).size.width * 0.13,
       width: MediaQuery.of(context).size.width * 0.13,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        color: const Color.fromARGB(255, 255, 255, 255)
-      ),
+      decoration: _boxDecoration(),
       child: IconButton(
         onPressed: (){
+          calculatePrice.setCounter(1);
           Navigator.pop(context);
         },
         icon: const Icon(Icons.arrow_back_rounded, color: Color.fromRGBO(45, 45, 45, 1), size: 33,))
     );
   }
+
+  BoxDecoration _boxDecoration() => BoxDecoration(
+    borderRadius: BorderRadius.circular(100),
+    color: const Color.fromARGB(255, 255, 255, 255)
+  );
 }

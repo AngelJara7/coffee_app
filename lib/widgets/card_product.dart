@@ -1,6 +1,7 @@
-import 'package:coffee_app/models/products.dart';
-import 'package:coffee_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+
+import 'package:coffee_app/models/models.dart';
+import 'package:coffee_app/widgets/widgets.dart';
 
 class CardProduct extends StatelessWidget {
   
@@ -20,28 +21,20 @@ class CardProduct extends StatelessWidget {
             children: [
               _CardProduct(image: product.img),
 
-              DescriptionProduct(product: product),
+              CardProductDescription(product: product),
             ],
           )
           : Row(
             children: [
-              DescriptionProduct(product: product),
+              CardProductDescription(product: product),
 
               _CardProduct(image: product.img),
             ],
           ),
         ),
-        PriceProduct(diameter: 0.13, price: product.price, size: 12,),
+        PriceProduct(price: product.price,),
       ],
     );
-    // ClipRRect(
-    //   borderRadius: const BorderRadius.all(Radius.circular(20)),
-    //   child: SizedBox(
-    //     height: 220,
-    //     width: 170,
-    //     child: Image.asset(image, fit: BoxFit.fill,)
-    //   ),
-    // );
   }
 }
 

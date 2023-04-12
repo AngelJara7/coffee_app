@@ -3,28 +3,26 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PriceProduct extends StatelessWidget {
   
-  const PriceProduct({super.key, required this.diameter, required this.price, required this.size,});
+  const PriceProduct({super.key, required this.price,});
 
-  final double diameter;
   final double price;
-  final double size;
 
   @override
   Widget build(BuildContext context) {
 
-    const boxDecoration = BoxDecoration(
-      color: Color.fromRGBO(45, 45, 45, 1),
-      borderRadius: BorderRadius.all(Radius.circular(50))
-    );
-    
-    final double diameterCircle = MediaQuery.of(context).size.width * diameter;
+    final double diameterCircle = MediaQuery.of(context).size.width * 0.13;
 
     return Container(
       alignment: Alignment.center,
       height: diameterCircle,
       width: diameterCircle,
-      decoration: boxDecoration,
-      child: Text('\$ $price', style: GoogleFonts.lora(fontSize: size, color: Colors.white),)
+      decoration: _boxDecoration(),
+      child: Text('\$ $price', style: GoogleFonts.lora(fontSize: 12, color: Colors.white),)
     );
   }
+
+  BoxDecoration _boxDecoration() => const BoxDecoration(
+    color: Color.fromRGBO(45, 45, 45, 1),
+    borderRadius: BorderRadius.all(Radius.circular(50))
+  );
 }

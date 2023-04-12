@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../providers/product_provider.dart';
+import '../providers/providers.dart';
 import '../widgets/widgets.dart';
 
 class ProductsListPage extends StatelessWidget {
@@ -20,14 +20,7 @@ class ProductsListPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
 
-        iconTheme: const IconThemeData(
-          color: Color.fromRGBO(45, 45, 45, 1)
-        ),
-
-        // leading: IconButton(
-        //   icon: const Icon(Icons.menu_rounded, color: Colors.black, size: 28,), 
-        //   onPressed: () {},
-        // ),
+        iconTheme: const IconThemeData(color: Color.fromRGBO(45, 45, 45, 1)),
 
         title: const HeaderPage(titlePage: 'Coffee Selection', textLogo: 'NEURO ', textpage: 'COFFEE HOUSE ', icon: Icons.coffee_sharp, color: Color.fromRGBO(45, 45, 45, 1), fontSizeTitle: 20, fontSize: 10,),
 
@@ -78,8 +71,8 @@ class _BottomSearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      height: MediaQuery.of(context).size.height * 0.1,
+      padding: const EdgeInsets.only(right: 20, left: 20, top: 10),
+      height: MediaQuery.of(context).size.height * 0.11,
       width: double.infinity,
       decoration: _boxDecoration(),
 
@@ -98,7 +91,7 @@ class _BottomSearchBar extends StatelessWidget {
       colors: [
         Color.fromRGBO(255, 255, 255, 0),
         Color.fromRGBO(128, 128, 128, 0.5),
-        Color.fromRGBO(128, 128, 128, 1)
+        Color.fromRGBO(128, 128, 128, 0.8)
       ]
     )
   );
