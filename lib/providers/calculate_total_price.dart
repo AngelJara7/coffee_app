@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CalculateTotalPrice extends ChangeNotifier{
 
   double _price = 0;
-  late int _counter = 1;
+  int _counter = 1;
   
   double get price => _price;
   int get counter => _counter;

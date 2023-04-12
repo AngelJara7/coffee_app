@@ -41,21 +41,15 @@ class ProductsListPage extends StatelessWidget {
             scrollDirection: Axis.vertical,
             padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 80),
             itemCount: productProvider.length,
-            itemBuilder: (context, index) {
-              final product = productProvider[index];
-
-              return Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, 'product_details_page', arguments: product);
-                    },
-                    child: CardProduct(product: product)
-                  ),
-                  const SizedBox(height: 20,)
-                ],
-              );
-            },
+            itemBuilder: (context, index) => Container(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, 'product_details_page', arguments: productProvider[index]);
+                },
+                child: CardProduct(product: productProvider[index])
+              ),
+            ),
           ),
           const _BottomSearchBar()
         ],

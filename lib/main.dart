@@ -8,7 +8,8 @@ void main() => runApp(
   MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => ProductProvider(), lazy: false,),
-      ChangeNotifierProvider(create: (_) => CalculateTotalPrice(), lazy: false,)
+      ChangeNotifierProvider(create: (_) => CalculateTotalPrice(), lazy: false,),
+      ChangeNotifierProvider(create: (_) => SelectFalvor(), lazy: false,)
     ],
     child: const MyApp(),
   )
