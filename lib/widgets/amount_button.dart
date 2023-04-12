@@ -27,20 +27,14 @@ class AmountButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: () {
-              calculatePrice.decrease();
-              //print("precio final: $finalPrice");
-            },
+            onPressed: () => calculatePrice.decrease(),
             icon: const Icon(Icons.remove, color: Colors.white, size: 20,)
           ),
 
           Text('$finalCounter', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w600, color: Colors.white),),
 
           IconButton(
-            onPressed: () {
-              calculatePrice.increase();
-              //print("precio final: $finalPrice");
-            },
+            onPressed: () => calculatePrice.increase(),
             icon: const Icon(Icons.add, color: Colors.white, size: 20,)
           )
         ],

@@ -5,7 +5,7 @@ import '../models/models.dart';
 class ProductProvider extends ChangeNotifier{
 
   List<Products> products = [];
-  final String routeFile = 'assets/products.json';
+  final String routeFile = 'assets/data/products.json';
 
   ProductProvider() {
     getAllProduct();

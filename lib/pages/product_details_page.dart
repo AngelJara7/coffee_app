@@ -20,13 +20,49 @@ class ProductDetailsPage extends StatelessWidget {
       body: ListView(
         scrollDirection: Axis.vertical,
         children: [
-          _ProductImageDetails(price: product.price, image: product.img),
+          _ProductImageDetails(product: product),
 
           _DetailsProduct(product: product),
         ],
       ),
     );
 
+  }
+}
+
+class _ProductImageDetails extends StatelessWidget {
+  
+  const _ProductImageDetails({required this.product});
+  
+  final Products product;
+  
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: MediaQuery.of(context).size.height * 0.5,
+          padding: const EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 30),
+
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(25)),
+            child: Image.asset(product.img, fit: BoxFit.fill, alignment: Alignment.center, width: double.infinity,),
+          ),
+        ),
+
+        Positioned(
+          top: 25,
+          left: 10,
+          child: _Container(),
+        ),
+
+        Positioned(
+          bottom: 0,
+          right: 10,
+          child: _PriceProduct(price: product.price,)
+        ),
+      ],
+    );
   }
 }
 
@@ -57,54 +93,17 @@ class _DetailsProduct extends StatelessWidget {
 
           const SizedBox(height: 15,),
 
-          const FlavorOptions(text: 'Add flavor', flavors: ['Vanilla', 'Caramel', 'Coconut'],),
+          const FlavorsOptions(text: 'Add flavor', flavors: ['Vanilla', 'Caramel', 'Coconut'],),
 
           const SizedBox(height: 15,),
 
-          const FlavorOptions(text: 'Pick Milk', flavors: ['Almond Milk', 'Soy Milk', 'Oat Milk'],),
+          const FlavorsOptions(text: 'Pick Milk', flavors: ['Almond Milk', 'Soy Milk', 'Oat Milk'],),
           
           const SizedBox(height: 20,),
           
           const ConfirmButton(text: 'Add to Cart', height: 50,)
         ],
       ),
-    );
-  }
-}
-
-class _ProductImageDetails extends StatelessWidget {
-  
-  const _ProductImageDetails({required this.price, required this.image});
-  
-  final double price;
-  final String image;
-  
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.5,
-          padding: const EdgeInsets.only(left: 25, right: 25, top: 5, bottom: 30),
-
-          child: ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(25)),
-            child: Image.asset(image, fit: BoxFit.fill, alignment: Alignment.center, width: double.infinity,),
-          ),
-        ),
-
-        Positioned(
-          top: 25,
-          left: 10,
-          child: _Container(),
-        ),
-
-        Positioned(
-          bottom: 0,
-          right: 10,
-          child: _PriceProduct(price: price,)
-        ),
-      ],
     );
   }
 }
