@@ -9,7 +9,7 @@ void main() => runApp(
     providers: [
       ChangeNotifierProvider(create: (_) => ProductProvider(), lazy: false,),
       ChangeNotifierProvider(create: (_) => CalculateTotalPrice(), lazy: false,),
-      ChangeNotifierProvider(create: (_) => SelectFalvor(), lazy: false,)
+      ChangeNotifierProvider(create: (_) => SelectFlavor(), lazy: false,)
     ],
     child: const MyApp(),
   )

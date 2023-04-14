@@ -71,7 +71,7 @@ class _BottomSearchBar extends StatelessWidget {
       decoration: _boxDecoration(),
 
       child: TextField(
-        style: GoogleFonts.poppins(fontSize: 13, color: const Color.fromRGBO(128, 128, 128, 1)),
+        style: GoogleFonts.poppins(fontSize: 14, color: const Color.fromRGBO(128, 128, 128, 1)),
         decoration: _inputDecoration(),
       ),
     );

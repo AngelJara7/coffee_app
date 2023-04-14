@@ -93,15 +93,17 @@ class _DetailsProduct extends StatelessWidget {
 
           const SizedBox(height: 15,),
 
-          const FlavorsOptions(text: 'Add flavor', flavors: ['Vanilla', 'Caramel', 'Coconut'],),
+          const FlavorsOptions(text: 'Add flavor', flavors: {'flavors': ['Vanilla', 'Caramel', 'Coconut']},),
 
           const SizedBox(height: 15,),
 
-          const FlavorsOptions(text: 'Pick Milk', flavors: ['Almond Milk', 'Soy Milk', 'Oat Milk'],),
+          const FlavorsOptions(text: 'Pick Milk', flavors: {'milks': ['Almond Milk', 'Soy Milk', 'Oat Milk']},),
           
-          const SizedBox(height: 20,),
+          const SizedBox(height: 50,),
           
-          const ConfirmButton(text: 'Add to Cart', height: 50,)
+          const ConfirmButton(text: 'Add to Cart', height: 50,),
+
+          const SizedBox(height: 20,)
         ],
       ),
     );
@@ -147,7 +149,7 @@ class _ProductScore extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text('Filled with cream', style: GoogleFonts.lora(fontSize: 16, fontWeight: FontWeight.w500, color: const Color.fromRGBO(45, 45, 45, 1)),),
+        Text('Filled with cream', style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w500, color: const Color.fromRGBO(45, 45, 45, 1)),),
 
         const SizedBox(width: 10,),
         const Icon(Icons.star_rounded, size: 15, color: Colors.amber,),
@@ -165,7 +167,8 @@ class _Container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final calculatePrice = Provider.of<CalculateTotalPrice>(context);
+    final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);
+    final selectedFlavor = Provider.of<SelectFlavor>(context, listen: false);
 
     return Container(
       alignment: Alignment.center,
@@ -174,7 +177,8 @@ class _Container extends StatelessWidget {
       decoration: _boxDecoration(),
       child: IconButton(
         onPressed: (){
-          calculatePrice.setCounter(1);
+          calculatePrice.cleanCounter();
+          selectedFlavor.cleanValues();
           Navigator.pop(context);
         },
         icon: const Icon(Icons.arrow_back_rounded, color: Color.fromRGBO(45, 45, 45, 1), size: 33,))

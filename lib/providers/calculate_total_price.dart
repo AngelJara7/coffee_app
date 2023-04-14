@@ -8,20 +8,20 @@ class CalculateTotalPrice extends ChangeNotifier{
   double get price => _price;
   int get counter => _counter;
 
-  void setPrice(double price) {
+  setPrice(double price) {
     _price = price;
   }
 
-  void setCounter(int counter) {
-    _counter = counter;
+  cleanCounter() {
+    _counter = 1;
   }
 
-  void increase() {
+  increase() {
     _counter++;
     notifyListeners();
   }
 
-  void decrease() {
+  decrease() {
     if (_counter > 1) {
       _counter--;
     }

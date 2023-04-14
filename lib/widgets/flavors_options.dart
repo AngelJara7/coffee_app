@@ -3,86 +3,68 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+
 class FlavorsOptions extends StatelessWidget {
 
   const FlavorsOptions({super.key, required this.text, required this.flavors,});
 
   final String text;
-  final List<String> flavors;
+  final Map<String, List<String>> flavors;
 
   @override
   Widget build(BuildContext context) {
 
-    // final selectedFlavor = Provider.of<SelectFalvor>(context);
-    // selectedFlavor.setFlavors(flavors);
-    print('HOLA MUNDO');
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(text, style: GoogleFonts.lora(fontSize: 16, fontWeight: FontWeight.w600),),
+        Text(text, style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w600),),
         const SizedBox(height: 5,),
-
-        // Wrap(
-        //   runSpacing: 7,
-        //   children: 
-        //     [ListView.builder(
-        //       scrollDirection: Axis.vertical,
-        //       itemCount: flavors.length,
-        //       itemBuilder: (context, index) => _FlavosOptions(text: text, flavors: flavors),
-        //     ),
-        //   ],
-        // ),
-
         Wrap(
-          runSpacing: 7,
+          runSpacing: 8,
           children: [
-            for(var flavor in flavors) _FlavosOptions(text: flavor, flavors: flavors),
+            for(var flavor in flavors.values) for(var element in flavor) _FlavorOptions(text: element, flavors: flavor, value: flavors.keys.last),
           ],
-        ),
+        )
       ],
     );
   }
 }
 
-class _FlavosOptions extends StatelessWidget {
+class _FlavorOptions extends StatelessWidget {
 
-  const _FlavosOptions({required this.text, required this.flavors,});
+  const _FlavorOptions({required this.text, required this.flavors, required this.value,});
 
   final String text;
   final List<String> flavors;
+  final String value;
 
   @override
   Widget build(BuildContext context) {
 
-    final selectedFlavor = Provider.of<SelectFalvor>(context);
-    Color textColor = selectedFlavor.textColor;
-    Color background = selectedFlavor.background;
-    bool selected = selectedFlavor.selected;
-    String tex = selectedFlavor.flavor;
-    print('$tex');
-    //print('TEXT: $textColor, BACKGROUND: $background');
-
+    final selectedFlavor = Provider.of<SelectFlavor>(context);
+    Color background = Colors.white;
+    Color textColor = const Color.fromRGBO(45, 45, 45, 1);
+    String typeFlavor = selectedFlavor.typeFlavor;
+    String typeMilk = selectedFlavor.typeMilk;
+    
+    if((typeFlavor == text) || (typeMilk == text)) {
+      background = const Color.fromRGBO(45, 45, 45, 1);
+      textColor = Colors.white;
+    }
+    
     return GestureDetector(
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         margin: const EdgeInsets.only(right: 15),
         decoration: BoxDecoration(
-          color: textColor,
+          color: background,
           borderRadius: BorderRadius.circular(5),
           border: Border.all(width: 1, color: const Color.fromRGBO(45, 45, 45, 1))
         ),
-        child: Text(text, style: GoogleFonts.poppins(fontSize: 15, color: background), ),
+        child: Text(text, style: GoogleFonts.poppins(fontSize: 16, color: textColor)),
       ),
       onTap: () {
-        selectedFlavor.setFlavor(text);
-        selectedFlavor.setFlavors(flavors);
-        //selectedFlavor.setSelected(true);
-        //selectedFlavor.selectedFlavor();
-        // print('TEXTO: $textColor, FONDO: $background');
-        print('TEXTO: $text');
-        // selectedFlavor.setFlavor('');
-        // selectedFlavor.setFlavors([]);
+          selectedFlavor.establecerSabor(text, value);
       },
     );
   }

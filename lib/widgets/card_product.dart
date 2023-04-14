@@ -15,7 +15,7 @@ class CardProduct extends StatelessWidget {
       alignment: product.value == 1 ? Alignment.bottomRight : Alignment.bottomLeft,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.24,
+          height: MediaQuery.of(context).size.height * 0.25,
           child: product.value == 1 
           ? Row(
             children: [
@@ -47,7 +47,7 @@ class _CardProduct extends StatelessWidget {
     return ClipRRect(
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: SizedBox(
-        height: 220,
+        height: double.infinity,
         width: 170,
         child: Image.asset(product.img, fit: BoxFit.fill,)
       ),
@@ -65,9 +65,9 @@ class _CardProductDescription extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-      height: 150,
+      height: 170,
       width: 180,
-      padding: const EdgeInsets.only(left: 20, right: 20),
+      padding: const EdgeInsets.only(left: 25, right: 20),
       decoration: _boxDecoration(),
 
       child: Column(
@@ -75,11 +75,11 @@ class _CardProductDescription extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           
-          Text(product.name, style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w500,), selectionColor: const Color.fromRGBO(45, 45, 45, 1),),
+          Text(product.name, style: GoogleFonts.lora(fontSize: 20, fontWeight: FontWeight.w500,), selectionColor: const Color.fromRGBO(45, 45, 45, 1),),
 
           const SizedBox(height: 10,),
           
-          Text(product.description, style: GoogleFonts.poppins(fontSize: 12, fontWeight: FontWeight.w400,), selectionColor: const Color.fromRGBO(45, 45, 45, 0),)
+          Text(product.description, style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400,), selectionColor: const Color.fromRGBO(45, 45, 45, 0), maxLines: 4,overflow: TextOverflow.ellipsis,)
         ],
       )
     );
@@ -115,7 +115,7 @@ class _PriceProduct extends StatelessWidget {
       height: MediaQuery.of(context).size.width * 0.13,
       width: MediaQuery.of(context).size.width * 0.13,
       decoration: _boxDecoration(),
-      child: Text('\$ $price', style: GoogleFonts.lora(fontSize: 12, color: Colors.white),)
+      child: Text('\$ $price', style: GoogleFonts.lora(fontSize: 14, color: Colors.white),)
     );
   }
 
