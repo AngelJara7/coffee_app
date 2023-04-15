@@ -32,18 +32,95 @@ class ProductOrderPage extends StatelessWidget {
           SizedBox(width: 5,)
         ],
       ),
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: products.length,
-        itemBuilder: (context, index) => Container(
-          color: Colors.white,
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          height: MediaQuery.of(context).size.width * 0.45,
-          width: double.infinity,
+      body: 
+              SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                physics: const AlwaysScrollableScrollPhysics(),
+                controller: ScrollController(),
+                child: Column(
+                  children: 
+                          [ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            itemCount: products.length,
+                            itemBuilder: (context, index) => Container(
+                              color: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              height: MediaQuery.of(context).size.width * 0.45,
+                              // width: double.infinity,
+                              
+                              child: OrderedProducts(products: products[index]),
+                            ),
+                          ),
+                          const SizedBox(height: 20,),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Discount Coupon', style: GoogleFonts.poppins(fontSize: 24, fontWeight: FontWeight.w700, color: const Color.fromRGBO(45, 45, 45, 1),), textAlign: TextAlign.start,),
 
-          child: OrderedProducts(products: products[index]),
-        ),
-      ),
+                              const SizedBox(height: 10,),
+
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    height: MediaQuery.of(context).size.height * 0.1,
+                                    width: MediaQuery.of(context).size.width * 0.62,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.transparent,
+                                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color.fromRGBO(45, 45, 45, 0.15),
+                                          spreadRadius: 2,
+                                          blurRadius: 7,
+                                          offset: Offset(2, 4)
+                                        )
+                                      ]
+                                    ),
+                                    
+                                    child: TextField(style: GoogleFonts.poppins(fontSize: 14, color: const Color.fromRGBO(128, 128, 128, 1)),
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                                        borderSide: BorderSide(
+                                          width: 0,
+                                          style: BorderStyle.none,
+                                        ),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      hintText: 'Promo Code',
+                                      hintStyle: TextStyle(
+                                        color: Color.fromRGBO(128, 128, 128, 1),
+                                        fontFamily: 'GoogleFonts.poppins()',
+                                      ),
+                                      suffixIcon: Icon(Icons.search, color: Color.fromRGBO(128, 128, 128, 1),)
+                                    ),
+                                  ),
+                                ),
+
+                                TextButton(
+                                  onPressed: () {  },
+                                  style: TextButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                    ),
+                                    backgroundColor: const Color.fromRGBO(45, 45, 45, 1),
+                                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15)
+                                  ),
+                                  child: Text('Apply', style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.white),),
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      ],
+                ),
+              ),
     );
   }
 }

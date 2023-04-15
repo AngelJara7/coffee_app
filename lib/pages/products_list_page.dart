@@ -101,7 +101,7 @@ class _BottomSearchBar extends StatelessWidget {
   );
 
   InputDecoration _inputDecoration() => const InputDecoration(
-    contentPadding: EdgeInsets.symmetric(horizontal: 20),
+    contentPadding: EdgeInsets.symmetric(horizontal: 25),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(30)),
       borderSide: BorderSide(
@@ -113,7 +113,8 @@ class _BottomSearchBar extends StatelessWidget {
     fillColor: Colors.white,
     hintText: 'Browse for your favorite coffee',
     hintStyle: TextStyle(
-      color: Color.fromRGBO(128, 128, 128, 1)
+      color: Color.fromRGBO(128, 128, 128, 1),
+      fontFamily: 'GoogleFonts.poppins()'
     ),
     suffixIcon: Icon(Icons.search, color: Color.fromRGBO(128, 128, 128, 1),)
   );

@@ -15,8 +15,7 @@ class ProductDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Products product = ModalRoute.of(context)!.settings.arguments as Products;
-    // final Object? index = ModalRoute.of(context)!.settings.arguments;
-       
+           
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
