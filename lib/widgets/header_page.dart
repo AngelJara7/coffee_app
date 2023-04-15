@@ -15,11 +15,11 @@ class HeaderPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(titlePage, style: GoogleFonts.lora(fontWeight: FontWeight.w500, fontSize: fontSizeTitle, color: color)),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(textLogo, style: GoogleFonts.lora(fontWeight: FontWeight.w500, fontSize: 11, color: color),),

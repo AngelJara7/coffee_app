@@ -7,6 +7,7 @@
             "img": "assets/img/coffee_latte.jpg",
             "description": "Ullamco id incididunt ut et cupidatat laboris officia consequat.",
             "value": 1,
+            "cantidad": 1,
             "price": 6.79
         },
         {
@@ -15,6 +16,7 @@
             "img": "assets/img/frappuccino.jpg",
             "description": "Laborum laboris culpa officia elit consequat labore irure aute nulla.",
             "value": 2,
+            "cantidad": 1,
             "price": 6.99
         },
         {
@@ -23,6 +25,7 @@
             "img": "assets/img/cappuccino.jpg",
             "description": "Aute deserunt dolor anim ad cupidatat consectetur sit.",
             "value": 1,
+            "cantidad": 1,
             "price": 5.49
         },
         {
@@ -31,6 +34,7 @@
             "img": "assets/img/expreso.jpg",
             "description": "Do ullamco amet cupidatat tempor quis laboris et deserunt.",
             "value": 2,
+            "cantidad": 1,
             "price": 6.79
         },
         {
@@ -39,6 +43,7 @@
             "img": "assets/img/americano.jpg",
             "description": "Non voluptate nisi officia in quis non laboris aute pariatur ad.",
             "value": 1,
+            "cantidad": 1,
             "price": 5.79
         },
         {
@@ -47,6 +52,7 @@
             "img": "assets/img/cafe_con_leche.jpg",
             "description": "Proident velit minim ex occaecat.",
             "value": 2,
+            "cantidad": 1,
             "price": 4.59
         }
     ]

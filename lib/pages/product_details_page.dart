@@ -1,3 +1,4 @@
+import 'package:coffee_app/services/orders_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,7 @@ class ProductDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final Products product = ModalRoute.of(context)!.settings.arguments as Products;
+    // final Object? index = ModalRoute.of(context)!.settings.arguments;
        
     return Scaffold(
       backgroundColor: Colors.white,
@@ -74,6 +76,13 @@ class _DetailsProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final orderService = Provider.of<OrdersServices>(context, listen: false);
+    final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);
+    final selectedFlavors = Provider.of<SelectFlavor>(context, listen: false);
+    Map<String, dynamic> flavors = {};
+    Map<String, dynamic> list = {};
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -89,7 +98,7 @@ class _DetailsProduct extends StatelessWidget {
 
           const SizedBox(height: 15,),
 
-          const AmountButton(height: 35, width: 140, fontSize: 20,),
+          AmountButton(height: 35, width: 140, fontSize: 20,),
 
           const SizedBox(height: 15,),
 
@@ -101,7 +110,27 @@ class _DetailsProduct extends StatelessWidget {
           
           const SizedBox(height: 50,),
           
-          const ConfirmButton(text: 'Add to Cart', height: 50,),
+          GestureDetector(
+            child: const ConfirmButton(text: 'Add to Cart', height: 50,),
+            onTap: () {
+              flavors.addAll({
+                'flavor': selectedFlavors.typeFlavor, 
+                'milk': selectedFlavors.typeMilk
+              });
+              list.addAll({
+                'id': product.id, 
+                'name': product.name, 
+                'img': product.img, 
+                'description': product.description, 
+                'value': product.value, 
+                'cantidad': product.cantidad = calculatePrice.counter, 
+                'price': product.price,
+                'flavors': flavors,
+                'subtotal': product.subtotal = product.price * product.cantidad
+              });
+              orderService.createOrder(list,);
+            },
+          ),
 
           const SizedBox(height: 20,)
         ],

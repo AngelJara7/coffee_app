@@ -5,7 +5,7 @@ import 'package:coffee_app/models/models.dart';
 
 class CardProduct extends StatelessWidget {
   
-  const CardProduct({super.key, required this.product});
+  const CardProduct({super.key, required this.product,});
 
   final Products product;
 
@@ -20,12 +20,12 @@ class CardProduct extends StatelessWidget {
           ? Row(
             children: [
               _CardProduct(product: product),
-              _CardProductDescription(product: product),
+              _CardProductDescription(product: product,),
             ],
           )
           : Row(
             children: [
-              _CardProductDescription(product: product),
+              _CardProductDescription(product: product,),
               _CardProduct(product: product),
             ],
           ),
@@ -79,7 +79,7 @@ class _CardProductDescription extends StatelessWidget {
 
           const SizedBox(height: 10,),
           
-          Text(product.description, style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400,), selectionColor: const Color.fromRGBO(45, 45, 45, 0), maxLines: 4,overflow: TextOverflow.ellipsis,)
+          Text(product.description, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w400,), selectionColor: const Color.fromRGBO(45, 45, 45, 0), maxLines: 4,overflow: TextOverflow.ellipsis,)
         ],
       )
     );

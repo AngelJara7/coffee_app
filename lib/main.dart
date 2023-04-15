@@ -1,3 +1,4 @@
+import 'package:coffee_app/services/orders_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +10,8 @@ void main() => runApp(
     providers: [
       ChangeNotifierProvider(create: (_) => ProductProvider(), lazy: false,),
       ChangeNotifierProvider(create: (_) => CalculateTotalPrice(), lazy: false,),
-      ChangeNotifierProvider(create: (_) => SelectFlavor(), lazy: false,)
+      ChangeNotifierProvider(create: (_) => SelectFlavor(), lazy: false,),
+      ChangeNotifierProvider(create: (_) => OrdersServices(), lazy: false,)
     ],
     child: const MyApp(),
   )
@@ -26,7 +28,8 @@ class MyApp extends StatelessWidget {
       initialRoute: "products_list_page",
       routes: {
         "products_list_page": (_) => const ProductsListPage(),
-        "product_details_page": (_) => const ProductDetailsPage()
+        "product_details_page": (_) => const ProductDetailsPage(),
+        "product_order_page": (_) => const ProductOrderPage()
       },
     );
   }

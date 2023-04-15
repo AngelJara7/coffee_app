@@ -19,15 +19,25 @@ class ProductsListPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
+        centerTitle: true,
 
-        iconTheme: const IconThemeData(color: Color.fromRGBO(45, 45, 45, 1)),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: const Icon(
+                Icons.menu_rounded, size: 33, color: Color.fromRGBO(45, 45, 45, 1),
+              ),
+            );
+          }
+        ),
 
         title: const HeaderPage(titlePage: 'Coffee Selection', textLogo: 'NEURO ', textpage: 'COFFEE HOUSE ', icon: Icons.coffee_sharp, color: Color.fromRGBO(45, 45, 45, 1), fontSizeTitle: 20, fontSize: 10,),
 
         actions: [
           IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined, color: Colors.black, size: 28,), 
-            onPressed: (){},
+            icon: const Icon(Icons.shopping_cart_outlined, color: Color.fromRGBO(45, 45, 45, 1), size: 30,), 
+            onPressed: () => Navigator.pushNamed(context, 'product_order_page'),
           ),
         ],
       ),
@@ -46,8 +56,8 @@ class ProductsListPage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, 'product_details_page', arguments: productProvider[index]);
-                },
-                child: CardProduct(product: productProvider[index])
+                }, 
+                child: CardProduct(product: productProvider[index],)
               ),
             ),
           ),

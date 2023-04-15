@@ -18,7 +18,7 @@ class SideMenu extends StatelessWidget {
           const SizedBox(height: 30,),
           ListTile(
             title: const _OptionsSideMenu('My Order'),
-            onTap: (){},
+            onTap: () => Navigator.pushNamed(context, 'product_order_page'),
           ),
           const SizedBox(height: 30,),
           ListTile(

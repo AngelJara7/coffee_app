@@ -18,9 +18,8 @@ class ProductProvider extends ChangeNotifier{
 
   getAllProduct() async {
     final response = await _getJsonData();
-    final jsonData = NewsResponse.fromRawJson(response);
-    
-    products = jsonData.product;
-     notifyListeners();
+    final jsonData = NewsProducts.fromRawJson(response);
+    products = jsonData.products;
+    notifyListeners();
   }
 }

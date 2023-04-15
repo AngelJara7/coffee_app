@@ -1,0 +1,38 @@
+{
+    "orders": [
+        {
+            "order_number": 1,
+            "products":[
+                {
+                    "id": "1",
+                    "name": "Café Latte",
+                    "img": "assets/img/coffee_latte.jpg",
+                    "description": "Ullamco id incididunt ut et cupidatat laboris officia consequat.",
+                    "value": 1,
+                    "cantidad": 1,
+                    "price": 6.79,
+                    "flavors": {
+                        "flavor": "Vanilla",
+                        "milk": "Almond Milk"
+                    },
+                    "subtotal": 6.79
+                },
+                {
+                    "id": "1",
+                    "name": "Café Latte",
+                    "img": "assets/img/coffee_latte.jpg",
+                    "description": "Ullamco id incididunt ut et cupidatat laboris officia consequat.",
+                    "value": 1,
+                    "cantidad": 2,
+                    "price": 6.79,
+                    "flavors": {
+                        "flavor": "Vanilla",
+                        "milk": "Almond Milk"
+                    },
+                    "subtotal": 13.58
+                }
+            ],
+            "total": 20.37
+        }
+    ]
+}

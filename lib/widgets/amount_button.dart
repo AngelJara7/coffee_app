@@ -5,15 +5,17 @@ import 'package:provider/provider.dart';
 import '../providers/providers.dart';
 
 class AmountButton extends StatelessWidget {
-  const AmountButton({super.key, required this.height, required this.width, required this.fontSize,});
+
+  AmountButton({super.key, required this.height, required this.width, required this.fontSize, this.counter});
   
   final double height, width, fontSize;
+  int? counter;
 
   @override
   Widget build(BuildContext context) {
 
     final calculatePrice = Provider.of<CalculateTotalPrice>(context);
-    int finalCounter = calculatePrice.counter;
+    int? finalCounter = counter ?? calculatePrice.counter;
 
     return Container(
       height: height,
@@ -28,14 +30,14 @@ class AmountButton extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () => calculatePrice.decrease(),
-            icon: const Icon(Icons.remove, color: Colors.white, size: 20,)
+            icon: const Icon(Icons.remove, color: Colors.white, size: 18,)
           ),
 
-          Text('$finalCounter', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w600, color: Colors.white),),
+          Text('$finalCounter', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w500, color: Colors.white),),
 
           IconButton(
             onPressed: () => calculatePrice.increase(),
-            icon: const Icon(Icons.add, color: Colors.white, size: 20,)
+            icon: const Icon(Icons.add, color: Colors.white, size: 18,)
           )
         ],
       ),

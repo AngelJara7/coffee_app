@@ -4,24 +4,20 @@
 
 import 'dart:convert';
 
-class NewsResponse {
-    NewsResponse({
-        required this.product,
+import 'package:coffee_app/models/models.dart';
+
+class NewsProducts {
+    NewsProducts({
+        required this.products,
     });
 
-    List<Products> product;
+    List<Products> products;
 
-    factory NewsResponse.fromRawJson(String str) => NewsResponse.fromJson(json.decode(str));
+    factory NewsProducts.fromRawJson(String str) => NewsProducts.fromJson(json.decode(str));
 
-    // String toRawJson() => json.encode(toJson());
-
-    factory NewsResponse.fromJson(Map<String, dynamic> json) => NewsResponse(
-        product: List<Products>.from(json["products"].map((x) => Products.fromJson(x))),
+    factory NewsProducts.fromJson(Map<String, dynamic> json) => NewsProducts(
+        products: List<Products>.from(json["products"].map((x) => Products.fromJson(x))),
     );
-
-    // Map<String, dynamic> toJson() => {
-    //     "product": List<dynamic>.from(product.map((x) => x.toJson())),
-    // };
 }
 
 class Products {
@@ -31,7 +27,10 @@ class Products {
         required this.img,
         required this.description,
         required this.value,
+        required this.cantidad,
         required this.price,
+        this.flavors,
+        this.subtotal
     });
 
     String id;
@@ -39,11 +38,12 @@ class Products {
     String img;
     String description;
     int value;
+    int cantidad;
     double price;
+    List<Flavors>? flavors;
+    double? subtotal;
 
     factory Products.fromRawJson(String str) => Products.fromJson(json.decode(str));
-
-    // String toRawJson() => json.encode(toJson());
 
     factory Products.fromJson(Map<String, dynamic> json) => Products(
         id: json["id"],
@@ -51,15 +51,9 @@ class Products {
         img: json["img"],
         description: json["description"],
         value: json["value"],
-        price: json["price"],
+        cantidad: json["cantidad"],
+        price: json["price"]?.toDouble(),
+        flavors: json["flavors"],
+        subtotal: json["subtotal"],
     );
-
-    // Map<String, dynamic> toJson() => {
-    //     "id": id,
-    //     "name": name,
-    //     "img": img,
-    //     "description": description,
-    //     "value": value,
-    //     "price": price,
-    // };
 }
