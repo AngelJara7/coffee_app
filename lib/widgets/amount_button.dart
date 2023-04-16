@@ -36,8 +36,12 @@ class AmountButton extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () {
-              counter = (counter! - 1);
-              index == null ? calculatePrice.decrease() : ordersService.updateCantProduct(counter, index!);
+              if (index == null) {
+                calculatePrice.decrease();
+              } else {
+                counter = (counter! - 1);
+                ordersService.updateCantProduct(counter, index!);
+              }
           },
             icon: const Icon(Icons.remove, color: Colors.white, size: 18,)
           ),
@@ -46,8 +50,12 @@ class AmountButton extends StatelessWidget {
 
           IconButton(
             onPressed: () {
-              counter = (counter! + 1);
-              index == null ? calculatePrice.increase() : ordersService.updateCantProduct(counter, index!);
+              if (index == null) {
+                calculatePrice.increase();
+              } else {
+                counter = (counter! + 1);
+                ordersService.updateCantProduct(counter, index!);
+              }
             },
             icon: const Icon(Icons.add, color: Colors.white, size: 18,)
           )
