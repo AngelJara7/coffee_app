@@ -26,5 +26,6 @@ class SelectFlavor extends ChangeNotifier{
   cleanValues() {
     _typeFlavor = '';
     _typeMilk = '';
+    // notifyListeners();
   }
 }

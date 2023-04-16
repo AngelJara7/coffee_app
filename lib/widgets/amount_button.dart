@@ -1,21 +1,27 @@
+import 'package:coffee_app/services/orders_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/providers.dart';
 
+// ignore: must_be_immutable
 class AmountButton extends StatelessWidget {
 
-  AmountButton({super.key, required this.height, required this.width, required this.fontSize, this.counter});
+  AmountButton({super.key, required this.height, required this.width, required this.fontSize, this.counter, this.index});
   
   final double height, width, fontSize;
-  int? counter;
+  int? counter, index;
 
   @override
   Widget build(BuildContext context) {
 
     final calculatePrice = Provider.of<CalculateTotalPrice>(context);
-    int? finalCounter = counter ?? calculatePrice.counter;
+    final ordersService = Provider.of<OrdersServices>(context);
+    int? finalCounter = 0;
+    ordersService.cleanOptions 
+    ? finalCounter = counter ?? calculatePrice.counter
+    : finalCounter = 1;
 
     return Container(
       height: height,
@@ -29,14 +35,20 @@ class AmountButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: () => calculatePrice.decrease(),
+            onPressed: () {
+              counter = (counter! - 1);
+              index == null ? calculatePrice.decrease() : ordersService.updateCantProduct(counter, index!);
+          },
             icon: const Icon(Icons.remove, color: Colors.white, size: 18,)
           ),
 
           Text('$finalCounter', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w500, color: Colors.white),),
 
           IconButton(
-            onPressed: () => calculatePrice.increase(),
+            onPressed: () {
+              counter = (counter! + 1);
+              index == null ? calculatePrice.increase() : ordersService.updateCantProduct(counter, index!);
+            },
             icon: const Icon(Icons.add, color: Colors.white, size: 18,)
           )
         ],

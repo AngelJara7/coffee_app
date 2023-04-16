@@ -1,4 +1,5 @@
 import 'package:coffee_app/providers/providers.dart';
+import 'package:coffee_app/services/orders_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +42,9 @@ class _FlavorOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final ordersServices = Provider.of<OrdersServices>(context);
     final selectedFlavor = Provider.of<SelectFlavor>(context);
+
     Color background = Colors.white;
     Color textColor = const Color.fromRGBO(45, 45, 45, 1);
     String typeFlavor = selectedFlavor.typeFlavor;
@@ -51,6 +54,9 @@ class _FlavorOptions extends StatelessWidget {
       background = const Color.fromRGBO(45, 45, 45, 1);
       textColor = Colors.white;
     }
+
+    if (!ordersServices.cleanOptions) selectedFlavor.cleanValues();
+    ordersServices.setCleanOptions(true);
     
     return GestureDetector(
       child: Container(

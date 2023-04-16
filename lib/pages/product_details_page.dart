@@ -76,12 +76,6 @@ class _DetailsProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final orderService = Provider.of<OrdersServices>(context, listen: false);
-    final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);
-    final selectedFlavors = Provider.of<SelectFlavor>(context, listen: false);
-    Map<String, dynamic> flavors = {};
-    Map<String, dynamic> list = {};
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
@@ -110,8 +104,13 @@ class _DetailsProduct extends StatelessWidget {
           const SizedBox(height: 50,),
           
           GestureDetector(
-            child: const ConfirmButton(text: 'Add to Cart', height: 50,),
+            child: const ConfirmButton(text: 'Add to Cart' , height: 50,),
             onTap: () {
+              final orderService = Provider.of<OrdersServices>(context, listen: false);
+              final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);
+              final selectedFlavors = Provider.of<SelectFlavor>(context, listen: false);
+              Map<String, dynamic> flavors = {};
+              Map<String, dynamic> list = {};
               flavors.addAll({
                 'flavor': selectedFlavors.typeFlavor, 
                 'milk': selectedFlavors.typeMilk
@@ -127,7 +126,7 @@ class _DetailsProduct extends StatelessWidget {
                 'flavors': flavors,
                 'subtotal': product.subtotal = product.price * product.cantidad
               });
-              orderService.createOrder(list,);
+              orderService.createOrder(list, true);
             },
           ),
 
@@ -148,8 +147,11 @@ class _PriceProduct extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final calculatePrice = Provider.of<CalculateTotalPrice>(context);
-    calculatePrice.setPrice(price);
-    String finalPrice = (price * calculatePrice.counter).toStringAsFixed(2);
+    final ordersService = Provider.of<OrdersServices>(context);
+    String finalPrice = '';
+    ordersService.cleanOptions 
+    ? finalPrice = (price * calculatePrice.counter).toStringAsFixed(2)
+    : finalPrice = price.toString();
 
     return Container(
       alignment: Alignment.center,
@@ -195,9 +197,6 @@ class _Container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);
-    final selectedFlavor = Provider.of<SelectFlavor>(context, listen: false);
-
     return Container(
       alignment: Alignment.center,
       height: MediaQuery.of(context).size.width * 0.13,
@@ -205,6 +204,8 @@ class _Container extends StatelessWidget {
       decoration: _boxDecoration(),
       child: IconButton(
         onPressed: (){
+          final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);final selectedFlavor = Provider.of<SelectFlavor>(context, listen: false);
+
           calculatePrice.cleanCounter();
           selectedFlavor.cleanValues();
           Navigator.pop(context);

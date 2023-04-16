@@ -1,3 +1,4 @@
+import 'package:coffee_app/services/orders_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,7 @@ class ProductsListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final ordersServices = Provider.of<OrdersServices>(context);
     final productProvider = Provider.of<ProductProvider>(context).products;
 
     return Scaffold(
@@ -35,16 +37,39 @@ class ProductsListPage extends StatelessWidget {
         title: const HeaderPage(titlePage: 'Coffee Selection', textLogo: 'NEURO ', textpage: 'COFFEE HOUSE ', icon: Icons.coffee_sharp, color: Color.fromRGBO(45, 45, 45, 1), fontSizeTitle: 20, fontSize: 10,),
 
         actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined, color: Color.fromRGBO(45, 45, 45, 1), size: 30,), 
-            onPressed: () => Navigator.pushNamed(context, 'product_order_page'),
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.shopping_cart_outlined, color: Color.fromRGBO(45, 45, 45, 1), size: 30,), 
+                onPressed: () => Navigator.pushNamed(context, 'product_order_page'),
+              ),
+
+              Container(
+                height: 9,
+                width: 9,
+                margin: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: ordersServices.verifyEmptyCart() ? Colors.transparent : Colors.redAccent,
+                ),
+              )
+            ],
           ),
         ],
       ),
 
       drawer: const SideMenu(),
       
-      body: Stack(
+      body: productProvider.isEmpty
+      ? const Center(
+        child: CircularProgressIndicator(
+          backgroundColor: Color.fromRGBO(45, 45, 45, 1),
+          color: Colors.white,
+          strokeWidth: 2,
+        ),
+      )
+      : Stack(
         alignment: Alignment.bottomCenter,
         children: [
           ListView.builder(

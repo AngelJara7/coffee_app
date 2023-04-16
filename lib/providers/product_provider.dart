@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models/models.dart';
@@ -20,6 +22,8 @@ class ProductProvider extends ChangeNotifier{
     final response = await _getJsonData();
     final jsonData = NewsProducts.fromRawJson(response);
     products = jsonData.products;
-    notifyListeners();
+    Timer(const Duration(milliseconds: 3500), () {
+      notifyListeners();
+    });
   }
 }
