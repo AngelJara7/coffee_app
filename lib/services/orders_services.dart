@@ -54,6 +54,7 @@ class OrdersServices extends ChangeNotifier {
       removeProduct(_product[index]);
     } else {
       _product[index]['cantidad'] = cant;
+      _product[index]['subtotal'] = cant * _product[index]['price'];
       notifyListeners();
     }
   }
