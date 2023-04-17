@@ -48,7 +48,7 @@ class _EmptyProductsOrdered extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -76,7 +76,7 @@ class _LoadingProductsOrdered extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       physics: const AlwaysScrollableScrollPhysics(),
       controller: ScrollController(
         initialScrollOffset: 0.0
@@ -122,19 +122,19 @@ class _PaymentDetailsProductsOrdered extends StatelessWidget {
 
         const SizedBox(height: 50,),
 
-        _TotalToPay(total: total, fontSize: 16,),
+        const _TotalToPay(text: 'SubTotal', fontSize: 16,),
 
         const Divider(height: 15, color: Color.fromRGBO(128, 128, 128, 0.5), thickness: 2,),
 
         const SizedBox(height: 20,),
 
-        _TotalToPay(total: total, fontSize: 20),
+        const _TotalToPay(text: 'Total', fontSize: 20),
 
         const SizedBox(height: 20,),
 
-        const ConfirmButton(text: 'Chekout', height: 50),
+        const ConfirmButton(text: 'Chekout', height: 50, loading: false),
 
-        const SizedBox(height: 20,)
+        const SizedBox(height: 50,)
       ],
     );
   }
@@ -217,17 +217,22 @@ class _EnterCouponDiscount extends StatelessWidget {
 
 class _TotalToPay extends StatelessWidget {
 
-  const _TotalToPay({required this.total, required this.fontSize,});
+  const _TotalToPay({required this.fontSize, required this.text,});
 
-  final String total;
+  final String text;
+  // final String total;
   final double fontSize;
 
   @override
   Widget build(BuildContext context) {
+
+    final ordersServices = Provider.of<OrdersServices>(context);
+    String total = ordersServices.total.toStringAsFixed(2);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('SubTotal', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1)),),
+        Text(text, style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1)),),
 
         Text('\$$total', style: GoogleFonts.poppins(fontSize: fontSize, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1)),)
       ],

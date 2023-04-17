@@ -1,24 +1,18 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class OrdersServices extends ChangeNotifier {
 
-  // final List<dynamic> _order = [];
   final List<dynamic> _product = [];
   int counter = 0;
   double _total = 0;
   bool _addCart = false;
-  bool _cleanOptions = true;
+  bool _cleanValues = false;
 
   List get getAllProducts => _product;
   double get total => _total;
   bool get addCart => _addCart;
-  bool get cleanOptions => _cleanOptions;
-
-  setCleanOptions(bool value) {
-    _cleanOptions = value;
-  }
+  bool get cleanValues => _cleanValues;
 
   createOrder(Map<String, dynamic> product, bool value) {
     _product.add(product);
@@ -29,7 +23,7 @@ class OrdersServices extends ChangeNotifier {
   calculateTotal() {
     _total = 0;
     for (var element in _product) {
-      _total += element['subtotal'];
+      _total += (element['subtotal']);
     }
   }
 
@@ -37,10 +31,11 @@ class OrdersServices extends ChangeNotifier {
     _addCart = value;
     notifyListeners();
     Timer(const Duration(milliseconds: 3000), () {
-      _cleanOptions = false;
+      _cleanValues = true;
       _addCart = false;
       notifyListeners();
     });
+    
   }
 
   removeProduct(Map<dynamic, dynamic> product) {
@@ -55,8 +50,13 @@ class OrdersServices extends ChangeNotifier {
     } else {
       _product[index]['cantidad'] = cant;
       _product[index]['subtotal'] = cant * _product[index]['price'];
+      calculateTotal();
       notifyListeners();
     }
+  }
+
+  setCleanValues() {
+    _cleanValues = false;
   }
 
   bool verifyEmptyCart() {

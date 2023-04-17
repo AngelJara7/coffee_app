@@ -75,6 +75,8 @@ class _DetailsProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    final ordersService = Provider.of<OrdersServices>(context,);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -104,36 +106,38 @@ class _DetailsProduct extends StatelessWidget {
           const SizedBox(height: 50,),
           
           GestureDetector(
-            child: const ConfirmButton(text: 'Add to Cart' , height: 50,),
-            onTap: () {
-              final orderService = Provider.of<OrdersServices>(context, listen: false);
-              final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);
-              final selectedFlavors = Provider.of<SelectFlavor>(context, listen: false);
-              Map<String, dynamic> flavors = {};
-              Map<String, dynamic> list = {};
-              flavors.addAll({
-                'flavor': selectedFlavors.typeFlavor, 
-                'milk': selectedFlavors.typeMilk
-              });
-              list.addAll({
-                'id': product.id, 
-                'name': product.name, 
-                'img': product.img, 
-                'description': product.description, 
-                'value': product.value, 
-                'cantidad': product.cantidad = calculatePrice.counter, 
-                'price': product.price,
-                'flavors': flavors,
-                'subtotal': product.subtotal = product.price * product.cantidad
-              });
-              orderService.createOrder(list, true);
-            },
+            child: ConfirmButton(text: 'Add to Cart', height: 50, loading: ordersService.addCart,),
+            onTap: () => _addProductToCart(context, ordersService),
           ),
 
           const SizedBox(height: 20,)
         ],
       ),
     );
+  }
+
+  _addProductToCart(context, ordersService) {
+
+    final selectFlavors = Provider.of<SelectFlavor>(context, listen: false);
+    Map<String, dynamic> flavors = {};
+    Map<String, dynamic> list = {};
+
+    flavors.addAll({
+      'flavor': selectFlavors.typeFlavor, 
+      'milk': selectFlavors.typeMilk
+    });
+    list.addAll({
+      'id': product.id, 
+      'name': product.name, 
+      'img': product.img, 
+      'description': product.description, 
+      'value': product.value, 
+      'cantidad': product.cantidad = selectFlavors.counter, 
+      'price': product.price,
+      'flavors': flavors,
+      'subtotal': product.subtotal = product.price * product.cantidad
+    });
+    ordersService.createOrder(list, true);
   }
 }
 
@@ -146,12 +150,12 @@ class _PriceProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final calculatePrice = Provider.of<CalculateTotalPrice>(context);
+    final selectFlavors = Provider.of<SelectFlavor>(context);
     final ordersService = Provider.of<OrdersServices>(context);
-    String finalPrice = '';
-    ordersService.cleanOptions 
-    ? finalPrice = (price * calculatePrice.counter).toStringAsFixed(2)
-    : finalPrice = price.toString();
+
+    if (ordersService.cleanValues) selectFlavors.cleanValues(); ordersService.setCleanValues();
+
+    String finalPrice = (price * selectFlavors.counter).toStringAsFixed(2);
 
     return Container(
       alignment: Alignment.center,
@@ -159,7 +163,7 @@ class _PriceProduct extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.22,
       decoration: _boxDecoration(),
 
-      child: Text('\$ $finalPrice', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),)
+      child: Text('\$$finalPrice', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),)
     );
   }
 
@@ -204,9 +208,8 @@ class _Container extends StatelessWidget {
       decoration: _boxDecoration(),
       child: IconButton(
         onPressed: (){
-          final calculatePrice = Provider.of<CalculateTotalPrice>(context, listen: false);final selectedFlavor = Provider.of<SelectFlavor>(context, listen: false);
+          final selectedFlavor = Provider.of<SelectFlavor>(context, listen: false);
 
-          calculatePrice.cleanCounter();
           selectedFlavor.cleanValues();
           Navigator.pop(context);
         },

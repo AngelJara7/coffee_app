@@ -31,7 +31,7 @@ class OrderedProduct extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           height: MediaQuery.of(context).size.width * 0.28,
-          width: MediaQuery.of(context).size.width * 0.55,
+          width: MediaQuery.of(context).size.width * 0.58,
           decoration: _boxDecoration(),
 
           child: _DetailsProductOrdered(products: products, index: index),
@@ -65,7 +65,9 @@ class _DetailsProductOrdered extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Provider.of<OrdersServices>(context);
-    
+    products['subtotal'];
+    String subTotal = (products['subtotal']).toStringAsFixed(2).toString();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -92,9 +94,9 @@ class _DetailsProductOrdered extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
 
-            Text('\$${products['subtotal']}', style: GoogleFonts.lora(fontSize: 18, fontWeight: FontWeight.w500, color: const Color.fromRGBO(45, 45, 45, 1)),),
+            Text('\$$subTotal', style: GoogleFonts.lora(fontSize: 16, fontWeight: FontWeight.w600, color: const Color.fromRGBO(45, 45, 45, 1)),),
 
-            AmountButton(height: 30, width: 110, fontSize: 16, counter: products['cantidad'],index: index)
+            AmountButton(height: 30, width: 110, fontSize: 14, counter: products['cantidad'],index: index)
           ],
         )
       ],

@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 class SelectFlavor extends ChangeNotifier{
 
+  int _counter = 1;
+
   String _typeFlavor = '';
   final _flavor = 'flavors';
   
   String _typeMilk = '';
   final _milk = 'milks';
+
+  int get counter => _counter;
 
   String get typeFlavor => _typeFlavor;
   String get flavor => _flavor;
@@ -23,9 +27,21 @@ class SelectFlavor extends ChangeNotifier{
     notifyListeners();
   }
 
+  increase() {
+    _counter++;
+    notifyListeners();
+  }
+
+  decrease() {
+    if (_counter > 1) {
+      _counter--;
+    }
+    notifyListeners();
+  }
+
   cleanValues() {
     _typeFlavor = '';
     _typeMilk = '';
-    // notifyListeners();
+    _counter = 1;
   }
 }

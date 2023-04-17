@@ -63,9 +63,8 @@ class ProductsListPage extends StatelessWidget {
       
       body: productProvider.isEmpty
       ? const Center(
-        child: CircularProgressIndicator(
+        child: CircularProgressIndicator.adaptive(
           backgroundColor: Color.fromRGBO(45, 45, 45, 1),
-          color: Colors.white,
           strokeWidth: 2,
         ),
       )

@@ -1,9 +1,9 @@
 import 'package:coffee_app/providers/providers.dart';
-import 'package:coffee_app/services/orders_services.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../services/orders_services.dart';
 
 class FlavorsOptions extends StatelessWidget {
 
@@ -42,21 +42,20 @@ class _FlavorOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final ordersServices = Provider.of<OrdersServices>(context);
-    final selectedFlavor = Provider.of<SelectFlavor>(context);
+    final selectFlavors = Provider.of<SelectFlavor>(context);
+    final ordersService = Provider.of<OrdersServices>(context);
 
+    if (ordersService.cleanValues) selectFlavors.cleanValues(); ordersService.setCleanValues();
+    
     Color background = Colors.white;
     Color textColor = const Color.fromRGBO(45, 45, 45, 1);
-    String typeFlavor = selectedFlavor.typeFlavor;
-    String typeMilk = selectedFlavor.typeMilk;
+    String typeFlavor = selectFlavors.typeFlavor;
+    String typeMilk = selectFlavors.typeMilk;
     
     if((typeFlavor == text) || (typeMilk == text)) {
       background = const Color.fromRGBO(45, 45, 45, 1);
       textColor = Colors.white;
     }
-
-    if (!ordersServices.cleanOptions) selectedFlavor.cleanValues();
-    ordersServices.setCleanOptions(true);
     
     return GestureDetector(
       child: Container(
@@ -70,7 +69,7 @@ class _FlavorOptions extends StatelessWidget {
         child: Text(text, style: GoogleFonts.poppins(fontSize: 16, color: textColor)),
       ),
       onTap: () {
-          selectedFlavor.establecerSabor(text, value);
+        selectFlavors.establecerSabor(text, value);
       },
     );
   }

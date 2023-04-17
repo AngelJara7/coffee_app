@@ -16,14 +16,18 @@ class AmountButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final calculatePrice = Provider.of<CalculateTotalPrice>(context);
     final ordersService = Provider.of<OrdersServices>(context);
+    final selectFlavors = Provider.of<SelectFlavor>(context);
     int? finalCounter = 0;
-    ordersService.cleanOptions 
-    ? finalCounter = counter ?? calculatePrice.counter
-    : finalCounter = 1;
+
+    if (ordersService.cleanValues) selectFlavors.cleanValues(); ordersService.setCleanValues();
+    
+    finalCounter = counter ?? selectFlavors.counter;
 
     return Container(
+      constraints: const BoxConstraints(
+        minWidth: 125
+      ) ,
       height: height,
       width: width,
       decoration: BoxDecoration(
@@ -37,7 +41,7 @@ class AmountButton extends StatelessWidget {
           IconButton(
             onPressed: () {
               if (index == null) {
-                calculatePrice.decrease();
+                selectFlavors.decrease();
               } else {
                 counter = (counter! - 1);
                 ordersService.updateCantProduct(counter, index!);
@@ -51,7 +55,7 @@ class AmountButton extends StatelessWidget {
           IconButton(
             onPressed: () {
               if (index == null) {
-                calculatePrice.increase();
+                selectFlavors.increase();
               } else {
                 counter = (counter! + 1);
                 ordersService.updateCantProduct(counter, index!);
