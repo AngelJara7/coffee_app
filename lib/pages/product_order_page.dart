@@ -95,6 +95,8 @@ class _LoadingProductsOrdered extends StatelessWidget {
           ),
         ),
 
+        const SizedBox(height: 20,),
+
         _PaymentDetailsProductsOrdered(total: total)
       ],
     );

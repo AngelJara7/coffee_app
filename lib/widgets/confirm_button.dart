@@ -23,8 +23,8 @@ class ConfirmButton extends StatelessWidget {
       ),
       child: loading
       ? const CircularProgressIndicator.adaptive(
-        backgroundColor: Color.fromRGBO(45, 45, 45, 1),
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        backgroundColor: Colors.white,
+        valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(45, 45, 45, 1)),
         strokeWidth: 3,
       )
       : Text(text.toString(), style: GoogleFonts.poppins(fontSize: 16, color: Colors.white,), textAlign: TextAlign.center,)

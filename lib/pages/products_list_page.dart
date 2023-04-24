@@ -51,7 +51,7 @@ class ProductsListPage extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: ordersServices.verifyEmptyCart() ? Colors.transparent : Colors.redAccent,
+                  color: ordersServices.verifyEmptyCart() ? Colors.transparent : const Color.fromRGBO(173, 26, 26, 1),
                 ),
               )
             ],
