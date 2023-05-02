@@ -150,12 +150,12 @@ class _PriceProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final selectFlavors = Provider.of<SelectFlavor>(context);
-    final ordersService = Provider.of<OrdersServices>(context);
+    // final selectFlavors = Provider.of<SelectFlavor>(context);
+    // final ordersService = Provider.of<OrdersServices>(context);
 
-    if (ordersService.cleanValues) selectFlavors.cleanValues(); ordersService.setCleanValues();
+    // if (ordersService.cleanValues) selectFlavors.cleanValues(); ordersService.setCleanValues();
 
-    String finalPrice = (price * selectFlavors.counter).toStringAsFixed(2);
+    // String finalPrice = (price * selectFlavors.counter).toStringAsFixed(2);
 
     return Container(
       alignment: Alignment.center,
@@ -163,7 +163,7 @@ class _PriceProduct extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.22,
       decoration: _boxDecoration(),
 
-      child: Text('\$$finalPrice', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),)
+      child: Text('\$$price', style: GoogleFonts.lora(fontSize: 20, color: Colors.white),)
     );
   }
 
